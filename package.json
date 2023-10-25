@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash": "^4.17.21",
     "moment": "2.26.0",
+    "moment-timezone": "^0.5.43",
     "react": "16.13.1",
     "react-big-calendar": "0.24.6",
     "react-dnd": "10.0.2",
     "react-dnd-html5-backend": "10.0.2",
     "react-dom": "16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "react-select": "^5.7.7"
   },
   "scripts": {
     "start": "react-scripts start",
