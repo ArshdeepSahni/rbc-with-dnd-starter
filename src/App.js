@@ -333,6 +333,7 @@ const App = () => {
         </button>
       </div>
       <DnDCalendar
+        popup
         defaultDate={moment().toDate()}
         defaultView="month"
         events={[...events, ...holidays]}
