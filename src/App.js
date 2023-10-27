@@ -180,12 +180,18 @@ const App = () => {
     const isOverlapping = events.some(
       (event) =>
         (start >= event.start && start <= event.end) ||
-        (end >= event.start && end <= event.end),
+        (end >= event.start && end <= event.end)
     );
 
-    const isOneHourBefore = moment(start)
-      .subtract(1, "hour")
-      .isBefore(moment());
+    const isOneHourBefore = events.some((event) => {
+      const oneHourBefore = moment(event.start).subtract(1, "hour");
+      return (
+        moment(newEvent.start).isSameOrAfter(oneHourBefore) &&
+        moment(newEvent.start).isBefore(event.start)
+      );
+    });
+    console.log(isOverlapping, "isOverlapping");
+    console.log(isOneHourBefore, "isOneHourBefore");
 
     if (isOverlapping || isOneHourBefore) {
       alert("Invalid event time. Please select a valid time.");
@@ -233,7 +239,7 @@ const App = () => {
   };
   let updateAppointment = () => {
     const objectIndex = events.findIndex((obj) =>
-      _.isEqual(obj, selectedEvent),
+      _.isEqual(obj, selectedEvent)
     );
 
     if (objectIndex === -1) {
@@ -264,11 +270,11 @@ const App = () => {
   };
   let deleteAppointment = () => {
     const confirmation = window.confirm(
-      "Are you sure you want to delete this event?",
+      "Are you sure you want to delete this event?"
     );
     if (confirmation) {
       setEvents((state) =>
-        _.filter(state, (item) => !_.isEqual(item, selectedEvent)),
+        _.filter(state, (item) => !_.isEqual(item, selectedEvent))
       );
     } else {
       console.log("User canceled deletion.");
